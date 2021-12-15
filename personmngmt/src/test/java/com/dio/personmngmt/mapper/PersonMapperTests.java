@@ -5,7 +5,6 @@ import com.dio.personmngmt.dto.request.PersonDTO;
 import com.dio.personmngmt.dto.request.PhoneDTO;
 import com.dio.personmngmt.entity.Person;
 import com.dio.personmngmt.entity.Phone;
-import com.dio.personmngmt.mapper.PersonMapper;
 import com.dio.personmngmt.utils.PersonUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class PersonMapperTests {
     @Autowired
     private PersonMapper personMapper;
 
-//Teste transformação de DTO para Entity
+
     @Test
     void testGivenPersonDTOThenReturnPersonEntity() {
         PersonDTO personDTO = PersonUtils.createFakeDTO();
@@ -37,7 +36,7 @@ public class PersonMapperTests {
         assertEquals(phoneDTO.getNumber(), phone.getNumber());
     }
 
-//Teste transformação de Entity para DTO.
+
     @Test
     void testGivenPersonEntityThenReturnPersonDTO() {
         Person person = PersonUtils.createFakeEntity();

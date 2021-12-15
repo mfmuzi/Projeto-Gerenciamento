@@ -1,19 +1,17 @@
 package com.dio.personmngmt.entity;
 
-//Variáveis do telefone de cada usuário.
-
+import com.dio.personmngmt.enums.PhoneType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.dio.personmngmt.enums.PhoneType;
 
 import javax.persistence.*;
 
 @Entity
-@Data // insere getter e setter.
-@Builder // constroi os objetos.
-@AllArgsConstructor //insere os contrutores.
+@Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Phone {
 

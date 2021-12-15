@@ -1,7 +1,5 @@
 package com.dio.personmngmt.dto.request;
 
-//Especificações para o telefone de cada usuário DTO.
-
 import com.dio.personmngmt.enums.PhoneType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

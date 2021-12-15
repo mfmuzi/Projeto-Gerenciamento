@@ -1,7 +1,5 @@
 package com.dio.personmngmt.service;
 
-//Teste para as ações da classe PersonService.
-
 import com.dio.personmngmt.dto.request.PersonDTO;
 import com.dio.personmngmt.dto.response.MessageResponseDTO;
 import com.dio.personmngmt.entity.Person;
@@ -18,7 +16,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static com.dio.personmngmt.utils.PersonUtils.*;
+import static com.dio.personmngmt.utils.PersonUtils.createFakeDTO;
+import static com.dio.personmngmt.utils.PersonUtils.createFakeEntity;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -34,7 +33,7 @@ public class PersonServiceTest {
     @Mock
     private PersonMapper personMapper;
 
-//Teste adição de usuário.
+
     @Test
     void testAddPerson() {
         PersonDTO personDTO = createFakeDTO();
@@ -49,7 +48,7 @@ public class PersonServiceTest {
     assertEquals("Created person with id 1", successMessage.getMessage());
 }
 
-//Teste deletar usuário por id válido.
+
     @Test
     void testDeleteValitPersonId() throws PersonNotFoundException {
         Long deletedPersonId = 1L;
@@ -69,7 +68,7 @@ public class PersonServiceTest {
                 .build();
     }
 
-//Teste deletar usuário por id inválido.
+
     @Test
     void testDeleteInvalidPersonId() throws PersonNotFoundException {
 
@@ -81,7 +80,7 @@ public class PersonServiceTest {
         assertThrows(PersonNotFoundException.class, () -> personService.delete(invalidPersonId));
     }
 
-//Teste encontrar usuário por id válido.
+
     @Test
     void testFindPersonValidId() throws PersonNotFoundException {
         PersonDTO expectedPersonDTO = createFakeDTO();
@@ -100,7 +99,7 @@ public class PersonServiceTest {
         assertEquals(expectedSavedPerson.getFirstName(), personDTO.getFirstName());
     }
 
-//Teste encontrar usuário por id inválido.
+
     @Test
     void testFindPersonInvalidId() {
         Long invalidPersonId = 1L;
@@ -110,7 +109,7 @@ public class PersonServiceTest {
         assertThrows(PersonNotFoundException.class, () -> personService.findById(invalidPersonId));
     }
 
-//Teste update usuário com id válido.
+
     @Test
     void testUpdateValidId() throws PersonNotFoundException {
         Long updatedPersonId = 2L;
@@ -135,7 +134,7 @@ public class PersonServiceTest {
         assertEquals("Updated person with id 2", successMessage.getMessage());
     }
 
-//Teste update usuário id inválido.
+
     @Test
     void testUpdateInvalidId() throws PersonNotFoundException {
         var invalidPersonId = 1L;
@@ -150,7 +149,7 @@ public class PersonServiceTest {
         assertThrows(PersonNotFoundException.class, () -> personService.updateById(invalidPersonId, updatePersonDTORequest));
     }
 
-//Teste listar usuários.
+
     @Test
     void testListAllPeople() {
         List<Person> expectedRegisteredPeople = Collections.singletonList(createFakeEntity());

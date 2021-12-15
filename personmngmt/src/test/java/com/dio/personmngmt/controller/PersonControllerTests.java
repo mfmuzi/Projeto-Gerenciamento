@@ -1,37 +1,31 @@
-
-
 package com.dio.personmngmt.controller;
 
 
+import com.dio.personmngmt.dto.request.PersonDTO;
+import com.dio.personmngmt.dto.response.MessageResponseDTO;
+import com.dio.personmngmt.exception.PersonNotFoundException;
+import com.dio.personmngmt.service.PersonService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-        import com.dio.personmngmt.dto.request.PersonDTO;
-        import com.dio.personmngmt.dto.response.MessageResponseDTO;
-        import com.dio.personmngmt.exception.PersonNotFoundException;
-        import com.dio.personmngmt.service.PersonService;
-        import org.junit.jupiter.api.BeforeEach;
-        import org.junit.jupiter.api.Test;
-        import org.junit.jupiter.api.extension.ExtendWith;
-        import org.mockito.Mock;
-        import org.mockito.junit.jupiter.MockitoExtension;
-        import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
-        import org.springframework.http.MediaType;
-        import org.springframework.test.web.servlet.MockMvc;
-        import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-        import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+import java.util.Collections;
+import java.util.List;
 
-        import java.util.Collections;
-        import java.util.List;
-
-        import static com.dio.personmngmt.utils.PersonUtils.asJsonString;
-        import static com.dio.personmngmt.utils.PersonUtils.createFakeDTO;
-        import static org.hamcrest.core.Is.is;
-        import static org.mockito.Mockito.when;
-        import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-        import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-        import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-        import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-        import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-        import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static com.dio.personmngmt.utils.PersonUtils.asJsonString;
+import static com.dio.personmngmt.utils.PersonUtils.createFakeDTO;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
 public class PersonControllerTests {
@@ -53,7 +47,7 @@ public class PersonControllerTests {
                 .build();
     }
 
-//Teste adicionar usuário.
+
     @Test
     void testPostPerson() throws Exception {
         PersonDTO expectedPersonDTO = createFakeDTO();
@@ -68,7 +62,7 @@ public class PersonControllerTests {
                 .andExpect(jsonPath("$.message", is(expectedResponseMessage.getMessage())));
     }
 
-//Teste retornar usuário com id válido.
+
     @Test
     void testGetValidId() throws Exception {
         long expectedValidId = 1L;
@@ -85,7 +79,7 @@ public class PersonControllerTests {
                 .andExpect(jsonPath("$.lastName", is("Ribeiro")));
     }
 
-//Teste retornar usuário com id inválido.
+
     @Test
     void testGetInvalidId() throws Exception {
         long expectedValidId = 1L;
@@ -99,7 +93,7 @@ public class PersonControllerTests {
                 .andExpect(status().isNotFound());
     }
 
-//Teste retornar lista de usuários.
+
     @Test
     void testGetListPerson() throws Exception {
         long expectedValidId = 1L;
@@ -117,7 +111,7 @@ public class PersonControllerTests {
                 .andExpect(jsonPath("$[0].lastName", is("Ribeiro")));
     }
 
-//Teste atualizar usuário.
+
     @Test
     void testPutPerson() throws Exception {
         long expectedValidId = 1L;
@@ -133,7 +127,7 @@ public class PersonControllerTests {
                 .andExpect(jsonPath("$.message", is(expectedResponseMessage.getMessage())));
     }
 
-//Teste deletar usuário.
+
     @Test
     void testDeletePerson() throws Exception {
         long expectedValidId = 1L;

@@ -1,7 +1,5 @@
 package com.dio.personmngmt.entity;
 
-//Variáveis de cada usuário.
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

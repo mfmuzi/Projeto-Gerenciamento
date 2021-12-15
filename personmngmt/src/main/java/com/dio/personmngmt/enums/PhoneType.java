@@ -1,7 +1,5 @@
 package com.dio.personmngmt.enums;
 
-//Especificação do tipo de telefone.
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
